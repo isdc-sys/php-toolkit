@@ -9,7 +9,6 @@ ver2="$2"
 base="/usr/lib64/"
 
 for x in $ver1 $ver2; do
-	echo "/usr/lib/php${x}/bin/php"
 	if [[ ! -e "/usr/lib/php${x}/bin/php" ]]; then	echo "Could not find PHP version $x installed";	exit 1; fi
 done
 
