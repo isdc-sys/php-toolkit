@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# List the modules that are different between two versions of PHP
+
+if [[ $# -ne 2 ]]; then echo "Usage: $0 VERSIONS"; exit 1; fi
+
+ver1="$1"
+ver2="$2"
+base="/usr/lib64/"
+
+for x in $ver1 $ver2; do
+	echo "/usr/lib/php${x}/bin/php"
+	if [[ ! -e "/usr/lib/php${x}/bin/php" ]]; then	echo "Could not find PHP version $x installed";	exit 1; fi
+done
+
+diff -y <(/usr/lib/php${ver1}/bin/php -m) <(/usr/lib/php${ver2}/bin/php -m)
